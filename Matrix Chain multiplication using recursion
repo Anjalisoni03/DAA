@@ -22,6 +22,6 @@ int main()
   int arr[]={3,2,4,2,5};
   int n = sizeof(arr) / sizeof(arr[0]);
   printf("Minimum number of multiplications is %d ",MCO(arr,1,n-1));
-  //getchar();
+  getchar();
   return 0;
 }
