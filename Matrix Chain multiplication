@@ -49,10 +49,7 @@ int matrixChainMemoised(int* p, int i, int j)
     dp[i][j] = INT_MAX;
     for (int k = i; k < j; k++)
     {
-        dp[i][j] = min(
-            dp[i][j], matrixChainMemoised(p, i, k)
-                     + matrixChainMemoised(p, k + 1, j)
-                       + p[i - 1] * p[k] * p[j]);
+        dp[i][j] = min(dp[i][j], matrixChainMemoised(p, i, k)+ matrixChainMemoised(p, k + 1, j)+ p[i - 1] * p[k] * p[j]);
     }
     return dp[i][j];
 }
@@ -62,7 +59,6 @@ int MatrixChainOrder(int* p, int n)
     return matrixChainMemoised(p, i, j);
 }
  
-// Driver Code
 int main()
 {
     int arr[] = { 1, 2, 3, 4 };
