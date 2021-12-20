@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<conio.h>
+int LS(int*,int ,int ,int);
+int main()
+{
+    int arr[]={56,70,44,21,30};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int key=21;
+    int res=LS(arr,0,n-1,key);   //pointing to linear search function
+    if(res!=-1)
+    {
+        printf("the element %d is found at %d",key,res);
+    }
+    else
+    {
+        printf("the element is not found");
+    }
+    return 0;
+}
+int LS(int arr[],int l,int h,int key)
+{
+    if(l>h)   //checking index of starting is less than last one or not
+       return -1;
+    if(arr[l]==key)  // scanning index one by one from left side
+        return l;
+    return LS(arr,l+1,h,key); //by l+1, pointer is set to next location to find key
+}
