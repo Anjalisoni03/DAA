@@ -1,0 +1,63 @@
+#include<stdio.h>
+void merge(int arr[],int l,int q, int r)
+{
+    int n1=q-l+1;           //length for left array
+    int n2=r-q;             //length for right array
+    int L[n1],R[n2];
+    int i,j,k;
+    for(i=0;i<n1;i++)    
+    {
+        L[i]=arr[l+i];
+    }
+    for(j=0;j<n2;j++)
+    {
+        R[j]=arr[q+1+j];
+    }
+    i=0,j=0,k=l;              //merge in different array when both array's are sorted and we have to merge then with sorted
+    while(i<n1 && j<n2)
+    {
+        if(L[i]<=R[j])
+        {
+            arr[k++]=L[i++];
+        }
+        else
+        {
+            arr[k++]=R[j++];  
+        }
+    }
+    while(i<n1)
+    {
+        arr[k++]=L[i++];
+    }
+    while(j<n2)
+    {
+        arr[k++]=R[j++];
+    }
+}
+void MS(int arr[],int l,int r)
+{
+    if(l<r)
+    {
+        int q=(l+r)/2;
+        MS(arr,l,q);
+        MS(arr,q+1,r);
+        merge(arr,l,q,r);
+    }
+}
+void main()
+{
+    int arr[]={2,8,7,1,3,5,6,4};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int i;
+    printf("unsorted array : ");
+    for(i=0;i<n;i++)
+    {
+        printf("%d",arr[i]);
+    }
+    MS(arr,0,n-1);
+    printf("\nsorted array : ");
+    for(i=0;i<n;i++)
+    {
+        printf("%d",arr[i]);
+    }
+}
