@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<conio.h>
+int BS(int arr[],int l,int r,int key)
+{
+    if(l<=r)                                     //one points at left and another at right , take the mid part and compare one by one
+    {
+        int mid=(l+r)/2;
+        if (arr[mid]==key)  
+            return mid;
+        if(arr[mid]>key)                       //if mid is greater then key ex. 44>21 so shoft to left side as in mid-1 
+            return BS(arr,l,mid-1,key);
+                                               // mid is less than key ex. if jey is 56 so 44<56 shift to right side mid+1
+        return BS(arr,mid+1,r,key);
+    }
+    return -1; 
+}
+int main()
+{
+    int n,temp,i,j,arr[]={56,70,44,21,30};
+    int res, key=21;
+    n=sizeof(arr)/sizeof(arr[0]);
+    for(i=0;i<n-1;i++)                      //sorting
+    {
+        for(j=0;j<n-i-1;j++)
+        {
+            if(arr[j]>arr[j+1])             //max. value reaching at last one by one, by swapping
+            {
+                temp=arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=temp;
+            }
+        }
+    }
+    res=BS(arr,0,n-1,key);
+    if (res!=-1)
+    {
+        printf("the element %d is found at %d",key,res);
+    }
+    else
+    {
+        printf("the element not found");
+    }
+    return 0;
+}
